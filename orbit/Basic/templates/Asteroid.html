@@ -1,0 +1,219 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+
+<html>
+<head>
+<style>
+
+	body{
+		background-color: #15172b;
+	}
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+.login {
+  width: 800px;
+  height: 830px;
+  border: 1px solid #CCC;
+  background: url(https://media4.giphy.com/media/BHNfhgU63qrks/giphy.gif) center center no-repeat;
+  background-size: cover;
+  margin: 30px auto;
+  border-radius: 20px;
+}
+.login .form {
+  width: 100%;
+  height: 100%;
+  padding: 15px 25px;
+}
+.login .form h2 {
+  color: #FFF;
+  text-align: center;
+  font-weight:normal;
+  font-style: italic;
+  font-family: Verdana, Geneva, Tahoma, sans-serif; 
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.login .form input {
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  background: rgba(255,255,255,.5);
+  border: 1px solid rgba(255,255,255,.1);
+  padding: 0 15px;
+  color: #000000;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.login .form input:focus {
+  border: 1px solid rgba(255,255,255,.8);
+  outline: none;
+}
+::-webkit-input-placeholder {
+    color:black
+}
+.login .form input.submit {
+  background: rgba(53, 2, 235, 0.9);
+  color: #2b00ff;
+  font-size: 15px;
+  margin-top: 40px;
+  font-weight: bold;
+}
+.submit{
+color: #2b00ff;
+}
+
+/* Style the dropdown container */
+#alg {
+  width: 225px; /* Set the width of the dropdown */
+  padding: 10px;
+  font-size: 16px; /* Set the font size */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 4px; /* Add border-radius for rounded corners */
+  background-color:rgba(255,255,255,.5); /* Set background color */
+}
+
+/* Style the dropdown options */
+#alg option {
+  font-size: 14px; /* Set the font size for options */
+  background-color: rgba(255,255,255,.5);/* Set background color for options */
+  color: #333; /* Set text color for options */
+}
+
+/* Style the dropdown when it's focused (clicked) */
+#alg:focus {
+  outline: none; /* Remove the default blue outline */
+  border-color: #007bff; /* Change border color when focused */
+}
+
+</style>
+</head>
+<body>
+	<div class="login">
+	<div class="form">
+		<form method="POST">
+		{% csrf_token %}
+	  <h2>ASTEROID ORBITAL PATH</h2>
+	  <br>
+	  <div>
+	  <label for="alg" style="color:#FFF; font-style: italic; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 15px; ">SELECT AlGORITHM :</label></div>
+	  <select name="alg" id="alg">
+		  <option value="0">SVM</option>
+		  <option value="1">Decision Tree</option>
+	  </select>
+	  <div class="row">
+	  <div class="col">
+		<input type="float" placeholder="NEO flag" name="txtNEO_flag" required>
+	  </div>
+	  <div class="col">
+		<input type="float" placeholder="1km NEO flag" name="txtOne_km_NEO_flag" required>
+	  </div>
+	  <div class="col">
+		<input type="float" placeholder="PHA flag" name="txtPHA_flag">
+	  </div>
+	</div>
+	<div class="row">
+		<div class="col">
+		  <input type="float" placeholder="Magnitude"  name="txtH" required>
+		</div>
+		<div class="col">
+			<input type="float" placeholder="Slope"  name="txtG">
+		  </div>
+		  <div class="col">
+			<input type="float" placeholder="Num obs" name="txtNum_obs">
+		  </div>
+	  </div>
+	  <div class="row">
+		<div class="col">
+		  <input type="float" placeholder="RMS"  name="txtrms" required>
+		</div>
+		<div class="col">
+		  <input type="float" placeholder="Uncertainty" name="txtU">
+		</div>
+		<div class="col">
+		  <input type="float" placeholder="Epoch" name="txtEpoch">
+		</div>
+	  </div>
+	  <div class="row">
+		  <div class="col">
+			<input type="float" placeholder="Mean anomaly" name="txtM" required>
+		  </div>
+		  <div class="col">
+			  <input type="float" placeholder="Perihelion" name="txtPeri">
+			</div>
+			<div class="col">
+			  <input type="float" placeholder="Node" name="txtNode">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+			  <input type="float" placeholder="Inclination" name="txti">
+			</div>
+			<div class="col">
+			  <input type="float" placeholder="Eccentricity" name="txte" required>
+			</div>
+			<div class="col">
+			  <input type="float" placeholder="N" name="txtn">
+			</div>
+		  </div>
+		  <div class="row">
+			  <div class="col">
+				<input type="float" placeholder="Axis" name="txta">
+			  </div>
+			  <div class="col">
+				  <input type="float" placeholder="Num opps" name="txtNum_opps" required>
+				</div>
+				<div class="col">
+				  <input type="float" placeholder="Tp" name="txtTp">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+				  <input type="float" placeholder="Orbital period" name="txtOrbital_period">
+				</div>
+				<div class="col">
+				  <input type="float" placeholder="Perihelion dist" name="txtPerihelion_dist" required>
+				</div>
+				<div class="col">
+				  <input type="float" placeholder="Aphelion dist" name="txtAphelion_dist">
+				</div>
+			  </div>
+			  <div class="row">
+				  <div class="col">
+					<input type="float" placeholder="Semilatus rectum" name="txtSemilatus_rectum" >
+				  </div>
+				  <div class="col">
+					  <input type="float" placeholder="Synodic period" name="txtSynodic_period" required>
+					</div>
+					
+				</div>
+				--------------------------------------------------------------------------------------------------------------------------------------------
+	  
+
+				<input type="submit" class="btn btn-primary" name="submit">
+
+	  <div class="row">
+		<div class="col">
+		  <input type="text" placeholder="Result" value="The Orbital Path is: {{prediction}}" readonly>
+		</div>
+	
+	</div>
+		</form>
+  </div>
+	</div>
+  
+  
+  
+</body>
+</html>
+
+
+
+
+
+
+
+{% endblock %}

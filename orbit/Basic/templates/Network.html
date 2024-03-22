@@ -1,0 +1,204 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+
+<html>
+<head>
+<style>
+
+	body{
+		background-color: #15172b;
+	}
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+.login {
+  width: 800px;
+  height: 800px;
+  border: 1px solid #CCC;
+  background: url(https://media3.giphy.com/media/U4FkC2VqpeNRHjTDQ5/giphy.gif?cid=ecf05e47c6eh031ockrsvbr6vjo0a15apy4hvr46ul8r9q76&ep=v1_gifs_search&rid=giphy.gif&ct=g) center center no-repeat;
+  background-size: cover;
+  margin: 30px auto;
+  border-radius: 20px;
+}
+.login .form {
+  width: 100%;
+  height: 100%;
+  padding: 15px 25px;
+}
+.login .form h2 {
+  color: #FFF;
+  text-align: center;
+  font-weight:normal;
+  font-style: italic;
+  font-family: Verdana, Geneva, Tahoma, sans-serif; 
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.login .form input {
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  background: rgba(255,255,255,.5);
+  border: 1px solid rgba(255,255,255,.1);
+  padding: 0 15px;
+  color: #000000;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.login .form input:focus {
+  border: 1px solid rgba(255,255,255,.8);
+  outline: none;
+}
+::-webkit-input-placeholder {
+    color:black
+}
+.login .form input.submit {
+  background: rgba(53, 2, 235, 0.9);
+  color: #2b00ff;
+  font-size: 15px;
+  margin-top: 40px;
+  font-weight: bold;
+}
+.submit{
+color: #2b00ff;
+}
+#alg {
+  width: 225px; /* Set the width of the dropdown */
+  padding: 10px;
+  font-size: 16px; /* Set the font size */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 4px; /* Add border-radius for rounded corners */
+  background-color:rgba(255,255,255,.5); /* Set background color */
+}
+
+/* Style the dropdown options */
+#alg option {
+  font-size: 14px; /* Set the font size for options */
+  background-color: rgba(255,255,255,.5);/* Set background color for options */
+  color: #333; /* Set text color for options */
+}
+
+/* Style the dropdown when it's focused (clicked) */
+#alg:focus {
+  outline: none; /* Remove the default blue outline */
+  border-color: #007bff; /* Change border color when focused */
+}
+
+
+</style>
+</head>
+<body>
+	<div class="login">
+	<div class="form">
+		<form method="POST">
+		{% csrf_token %}
+	  <h2>NETWORK INTRUSION</h2>
+	 <br>
+	 <div>
+		<label for="alg" style="color:#FFF; font-style: italic; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 15px; ">SELECT AlGORITHM :</label></div>
+		<select name="alg" id="alg">
+			<option value="0">SVM</option>
+			<option value="1">Decision Tree</option>
+		</select>
+
+	  <div class="row">
+	  <div class="col">
+		<input type="text" placeholder="Port Number" name="txtPort Number" required>
+	  </div>
+	  <div class="col">
+		<input type="text" placeholder="Received Packets" name="txtReceived Packets" required>
+	  </div>
+	  <div class="col">
+		<input type="text" placeholder="Received Bytes" name="txtReceived Bytes">
+	  </div>
+	</div>
+	<div class="row">
+		<div class="col">
+		  <input type="text" placeholder="Sent Bytes"  name="txtSent Bytes" required>
+		</div>
+		<div class="col">
+			<input type="text" placeholder="Sent Packets"  name="txtSent Packets">
+		  </div>
+		  <div class="col">
+			<input type="text" placeholder="Port alive Duration" name="txtPort alive Duration">
+		  </div>
+	  </div>
+	  <div class="row">
+		<div class="col">
+		  <input type="text" placeholder="Delta Received Packets"  name="txtDelta Received Packets" required>
+		</div>
+		<div class="col">
+		  <input type="text" placeholder="Delta Received Bytes" name="txtDelta Received Bytes">
+		</div>
+		<div class="col">
+		  <input type="text" placeholder="Delta Sent Bytes" name="txtDelta Sent Bytes">
+		</div>
+	  </div>
+	  <div class="row">
+		  <div class="col">
+			<input type="text" placeholder="Delta Sent Packets" name="txtDelta Sent Packets" required>
+		  </div>
+		  <div class="col">
+			  <input type="text" placeholder="Port alive Duration" name="txtDelta Port alive Duration">
+			</div>
+			<div class="col">
+			  <input type="text" placeholder="Connection Point" name="txtConnection Point">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+			  <input type="text" placeholder="Total Load/Rate" name="txtTotal Load/Rate">
+			</div>
+			<div class="col">
+			  <input type="text" placeholder="Total Load/Latest" name="txtTotal Load/Latest" required>
+			</div>
+			<div class="col">
+			  <input type="text" placeholder="Unknown Load/Rate" name="txtUnknown Load/Rate">
+			</div>
+		  </div>
+		  <div class="row">
+			  <div class="col">
+				<input type="text" placeholder="Unknown Load/Latest" name="txtUnknown Load/Latest">
+			  </div>
+			  <div class="col">
+				  <input type="text" placeholder="Latest bytes counter" name="txtLatest bytes counter" required>
+				</div>
+				<div class="col">
+				  <input type="text" placeholder="Active Flow Entries" name="txtActive Flow Entries">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+				  <input type="text" placeholder="Packets Looked Up" name="txtPackets Looked Up">
+				</div>
+				<div class="col">
+				  <input type="text" placeholder="Packets Matched" name="txtPackets Matched" required>
+				</div>
+				
+			  </div>
+
+				--------------------------------------------------------------------------------------------------------------------------------------------
+	
+				<input type="submit" class="btn btn-primary" name="submit">
+
+	  <div class="row">
+		<div class="col">
+		  <input type="text" placeholder="Result" value="The Network Intrusion is: {{prediction}}" readonly>
+		</div>
+		
+	</div>
+		</form>
+  </div>
+	</div>
+  
+  
+  
+</body>
+</html>
+   
+
+
+{% endblock %}
